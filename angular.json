@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ComponentCommunication"
+    }
+  },
+  "defaultProject": "ComponentCommunication",
+  "cli": {
+    "analytics": false
+  }
 }
