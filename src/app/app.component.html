@@ -1,17 +1,4 @@
-<div class="row">
-  <div class="col-md-5">
-  </div>
-  <div class="col-md-4">
-    <button class='btn btn-info' (click)='getProductsData()'>GET PRODUCTS</button>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    <h2>{{this.title}}</h2>
-    <hr/>
-    <h3>{{messageFromParent}}</h3>
-  </div>
-</div>
-
-<app-child [messageFromChild]='messageToChild' [productList]='products'></app-child>
+<button type="button" (click)='clickParentButton()'>CLICK PARENT</button>
+<h2>Parent Component:{{messageFromParent}}</h2>
+<app-child [messageFromChild]='messageToChild' [getCount]='this.Count.counter' (passToParentFromEmitter) = 'ParentButton($event)'></app-child>
+<h2>Product Details From Parent is: {{this.product.productId +" "+ this.product.Name +" "+ this.product.Price}}</h2>

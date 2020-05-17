@@ -1,40 +1,39 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-child',
-  template: 
-  `<h3>{{messageFromChild}}</h3><br><br>
-  <div class ='container'>
-  <table class ='table'>
-  <thead>
-  <tr>
-  <th>Images</th>
-  <th>ProductName</th>
-  <th>Price</th>
-  <th>Quantity</th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <tr *ngFor = 'let product of productList'>
-  <td> <img [src]='product.ImagePath' [width] = 80 [style.margin] = 2></td>
-  <td>{{product.ProductName}}</td>
-  <td>{{product.Price}}</td>
-  <td>{{product.Quantity}}</td>
-  </tr>
-  </tbody>
-  </table>
-  </div>
-  `,
+  template: `<h2>Child Component: {{this.messageFromChild}}</h2>
+  <h2>Get Total Count From Child is: {{getCount}}</h2>
+  <button type='button' (click)='clickOnChildBtn()'>CLICK ON CHILD</button>`,
   styleUrls: ['./child.component.css']
 })
 export class ChildComponent implements OnInit {
+@Input() messageFromChild: string;
 
- @Input() messageFromChild: string;
- @Input() productList: any;
+@Input() getCount: any;
+@Output() passToParentFromEmitter = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  product = {
+    productId : 1,
+    Name : 'Nike',
+    Price : 200
+  }
+
+
+
+  clickOnChildBtn() {
+    console.log('btnclicked');
+    this.passToParentFromEmitter.emit(this.product)
+  }
+  ngOnChanges() {
+    console.log('ngOnchanges')
+    if(this.getCount ==  10)
+    alert("Total Reached")
   }
 
 }

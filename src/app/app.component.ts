@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { IProductData } from './IProductData';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,42 +6,29 @@ import { IProductData } from './IProductData';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Parent to Child Communication';
-  messageFromParent = 'Displayed From Parent Component';
+  messageFromParent = 'Display from Parent Component';
   messageToChild = 'Displayed From Child Component';
-  products: IProductData[]; 
 
+  Count = {
+    counter : 1
+  }
 
-  getProductsData() : IProductData[] {
-  this.products =
-    [
-      {
-        "ImagePath" : 'assets/ImagesFolder/nikefront.jpg',
-        "ProductName":'Nike',
-        "Price": 1200,
-        "Quantity": 250
-      },
-      {
-        "ImagePath" : 'assets/ImagesFolder/adidasfront.jpg',
-        "ProductName":'Adidas',
-        "Price": 1500,
-        "Quantity": 150
-      },
-      {
-        "ImagePath" : 'assets/ImagesFolder/pumafront.jpg',
-        "ProductName":'PUMA',
-        "Price": 670,
-        "Quantity": 50
-      },
-      {
-        "ImagePath" : 'assets/ImagesFolder/ucbfront.jpg',
-        "ProductName":'UCB',
-        "Price": 2000,
-        "Quantity": 45
-      }
+  product = {
+    productId:'',
+    Name: '',
+    Price: ''
+  }
+  clickParentButton() {
 
-    ];
-    return this.products;
-   
+    this.Count.counter = this.Count.counter + 1;
+  }
+
+  ParentButton(data) {
+    this.product.productId = data.productId;
+    this.product.Name = data.Name;
+    this.product.Price = data.Price;
+    
+    console.log(data.productId +" "+ data.Name +" "+ data.Price)
+
   }
 }
